@@ -40,3 +40,23 @@ deals = data["deals"]
 
 #output
 output = {"commission":[],"deals":[]}
+
+for user in users:
+    commissions={}
+    user_id = user["id"]
+    objective = user["objective"]
+    amount_sold = 0
+    for deal in deals:
+        amount= deal["amount"]
+        if(deal["user"]==user_id):
+            date = deal["payment_date"][0:7]
+            commission = calculate_commision(amount,amount_sold,objective)
+            if(date in commissions):
+                commissions[date]= commissions[date]+commission
+            else:
+                commissions[date]=commission
+            amount_sold = amount_sold + amount
+            output["deals"].append({"id":deal['id'],"commission":commission})
+    output["commission"].append({"user_id":user_id,"commission":commissions})
+
+
