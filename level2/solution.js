@@ -19,3 +19,14 @@ const users = data["users"];
 const deals = data["deals"];
 
 let result = { commissions: [] };
+
+users.map((user) => {
+  let totalAmounts = 0;
+  deals.map((deal) => {
+    if (deal.user === user.id) {
+      totalAmounts += deal.amount;
+    }
+  });
+  const commission = calculateCommission(totalAmounts, user.objective);
+  result.commissions.push({ user_id: user.id, commission: commission });
+});
