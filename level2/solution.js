@@ -30,3 +30,7 @@ users.map((user) => {
   const commission = calculateCommission(totalAmounts, user.objective);
   result.commissions.push({ user_id: user.id, commission: commission });
 });
+
+const json = JSON.stringify(result, null, 2);
+let fs = require("fs");
+fs.writeFile("output.json", json, (err) => err && console.log(err));
