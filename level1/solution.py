@@ -25,3 +25,14 @@ deals = data["deals"]
 
 #output
 output={"commissions":[]}
+
+for user in users :
+    total_amounts=0
+    number_of_deals=0
+    for deal in deals:
+        if(deal["user"]==user['id']):
+            total_amounts= total_amounts +deal["amount"]
+            number_of_deals = number_of_deals+1
+    commission= calculate_commision(total_amounts,number_of_deals)
+    output["commissions"].append({"user_id":user["id"],"commission":commission})
+    
