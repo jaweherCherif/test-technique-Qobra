@@ -60,3 +60,9 @@ for user in users:
     output["commission"].append({"user_id":user_id,"commission":commissions})
 
 
+#create the file output.json and write in it the output
+json_output = json.dumps(output, indent = 2)
+with open("output.json", "w") as outfile:
+    outfile.write(json_output)
+f.close()        
+
