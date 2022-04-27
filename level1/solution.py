@@ -36,3 +36,11 @@ for user in users :
     commission= calculate_commision(total_amounts,number_of_deals)
     output["commissions"].append({"user_id":user["id"],"commission":commission})
     
+
+#create the file output.json and write in it the output
+json_output = json.dumps(output, indent = 2)
+with open("output.json", "w") as outfile:
+    outfile.write(json_output)
+
+f.close()
+
